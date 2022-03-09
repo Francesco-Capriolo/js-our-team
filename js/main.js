@@ -10,6 +10,8 @@ BONUS 1:
 BONUS 2:
     organizzare i singoli membri in card / schede */
 
+/* Aggiungi in fondo all 'esercizio un form con nome, ruolo e un link all'
+immagine che con un bottone consentano di aggiungere un team member per volta in più a quelli già presenti. */
 
 const team = [{
         name: 'Wayne Barnett',
@@ -48,13 +50,12 @@ for (let chiave in team) {
     console.log(team[chiave]);
 }
 
-
 let carouselContent = "";
 
 for (let i = 0; i < team.length; i++) {
-    carouselContent += `<div class="col-4">
+    carouselContent += `<div class="col-12 col-md-6 col-lg-4">
                 <div class="mb-2">
-                    <img id="image" class="img-fluid" src="${"img/"+team[i].image}" alt="${team[i].name}">
+                    <img id="image" class="img-fluid w-100" src="${"img/"+team[i].image}" alt="${team[i].name}">
                 </div>
                 <div id="description" class="text-center">
                     <h3 id="name">
@@ -73,3 +74,35 @@ carouselWrapper.innerHTML += carouselContent;
 /* document.getElementById("image").innerHTML = team.image;
 document.getElementById("name").innerHTML = team.name;
 document.getElementById("role").innerHTML = team.role; */
+
+document.getElementById("submit").addEventListener('click', function () {
+    const newName = document.getElementById("inputName");
+    const newRole = document.getElementById("inputRole");
+    console.log(newName.value);
+
+    const newMember = {
+        name: newName.value,
+        role: newRole.value,
+    };
+
+    team.push(newMember);
+    carouselContent = `<div class="col-12 col-md-6 col-lg-4">
+                <div class="mb-2">
+                    <img id = "image"
+                    class = "img-fluid w-100"
+                    src = "${"img/"+newMember.image}" alt="${newMember.name}">
+                </div>
+                <div id="description" class="text-center">
+                    <h3 id="name">
+                        ${newMember.name}
+                    </h3>
+                    <p id="role">
+                    ${newMember.role}
+                    </p>
+                </div>
+            </div>
+            `
+    const carouselWrapper = document.querySelector('section.team-wrapper');
+    carouselWrapper.innerHTML += carouselContent;
+    console.log(team)
+})
