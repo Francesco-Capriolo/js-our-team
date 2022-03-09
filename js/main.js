@@ -45,22 +45,16 @@ const team = [{
 
 //ciclo for in
 for (let chiave in team) {
-    /*  team.push(imageJs) */
     console.log(team[chiave]);
 }
-/* /* let text = "../img/";  */
 
-/* function imageJs() {
-    text = "img/";
-    return this.text + this.image;
-}
- */
+
 let carouselContent = "";
 
 for (let i = 0; i < team.length; i++) {
     carouselContent += `<div class="col-4">
                 <div class="mb-2">
-                    <img id="image" class="img-fluid" src="${team[i].image}" alt="${team[i].name}">
+                    <img id="image" class="img-fluid" src="${"img/"+team[i].image}" alt="${team[i].name}">
                 </div>
                 <div id="description" class="text-center">
                     <h3 id="name">
