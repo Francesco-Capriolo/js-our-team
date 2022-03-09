@@ -45,16 +45,16 @@ const team = [{
 
 //ciclo for in
 for (let chiave in team) {
-    team.push(imageJs)
+    /*  team.push(imageJs) */
     console.log(team[chiave]);
 }
 /* /* let text = "../img/";  */
 
-function imageJs() {
+/* function imageJs() {
     text = "img/";
     return this.text + this.image;
 }
-
+ */
 let carouselContent = "";
 
 for (let i = 0; i < team.length; i++) {
