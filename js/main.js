@@ -45,12 +45,47 @@ const team = [{
     },
 ];
 
-//ciclo for in
-for (let chiave in team) {
-    console.log(team[chiave]);
+for (let i = 0; i < team.length; i++) {
+    addMember('team-wrapper', team[i].name[0], team[i].role, "img/" + team[i].image);
 }
+console.log(team.role);
 
-let carouselContent = "";
+// quando aggiungo un bottone con una funzione, inizieri dal collegare lo stato delle informazioni
+// da passare con un console.log presente all'interno dell'eventListener del suddetto bottone
+
+document.getElementById('submit').addEventListener('click', function () {
+    const inputElements = document.querySelectorAll('new-input-member .input-group > input');
+
+    const teamMember = [];
+    for (let i = 0; i < inputElements.length; i++) {
+        teamMember.push(inputElements[i].value);
+        inputElements[i].value = "";
+    }
+    console.log(teamMember);
+    addMember('team-wrapper', teamMember[0], teamMember[1], teamMember[2]);
+});
+
+function addMember(parentId, name, role, image) {
+
+    if (parentId != '' && name != '' && role != '' && image != '')
+
+        document.getElementById(parentId).innerHTML += `
+        <div class="col-12 col-md-6 col-lg-4">
+                <div class="mb-2">
+                    <img id="image" class="img-fluid w-100" src="${team.image}" alt="${team.name}">
+                </div>
+                <div id="description" class="text-center">
+                    <h3 id="name">
+                        ${team.name}
+                    </h3>
+                    <p id="role">
+                    ${team.role}
+                    </p>
+                </div>
+            </div> `;
+};
+
+/* let carouselContent = "";
 
 for (let i = 0; i < team.length; i++) {
     carouselContent += `<div class="col-12 col-md-6 col-lg-4">
@@ -71,9 +106,6 @@ for (let i = 0; i < team.length; i++) {
 const carouselWrapper = document.querySelector('section.team-wrapper');
 carouselWrapper.innerHTML += carouselContent;
 
-/* document.getElementById("image").innerHTML = team.image;
-document.getElementById("name").innerHTML = team.name;
-document.getElementById("role").innerHTML = team.role; */
 
 document.getElementById("submit").addEventListener('click', function () {
     const newName = document.getElementById("inputName");
@@ -106,3 +138,4 @@ document.getElementById("submit").addEventListener('click', function () {
     carouselWrapper.innerHTML += carouselContent;
     console.log(team)
 })
+ */
